@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from rest_framework import authentication
-from .serializers import HomePageSerializer, CustomTextSerializer
+from .serializers import CustomTextSerializer, HomePageSerializer, Stay_HungrySerializer
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.permissions import IsAdminUser
@@ -14,7 +14,7 @@ from home.api.v1.serializers import (
     HomePageSerializer,
     UserSerializer,
 )
-from home.models import HomePage, CustomText
+from home.models import CustomText, HomePage, Stay_Hungry
 
 
 class SignupViewSet(ModelViewSet):
@@ -52,3 +52,12 @@ class HomePageViewSet(ModelViewSet):
     authentication_classes = (SessionAuthentication, TokenAuthentication)
     permission_classes = [IsAdminUser]
     http_method_names = ["get", "put", "patch"]
+
+
+class Stay_HungryViewSet(viewsets.ModelViewSet):
+    serializer_class = Stay_HungrySerializer
+    authentication_classes = (
+        authentication.SessionAuthentication,
+        authentication.TokenAuthentication,
+    )
+    queryset = Stay_Hungry.objects.all()

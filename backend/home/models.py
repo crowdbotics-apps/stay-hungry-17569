@@ -31,3 +31,8 @@ class HomePage(models.Model):
     @property
     def field(self):
         return "body"
+
+
+class Stay_Hungry(models.Model):
+    "Generated Model"
+    stayhungry = models.BigIntegerField()
